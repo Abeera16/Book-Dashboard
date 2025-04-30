@@ -1,75 +1,117 @@
-// BookList.jsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../App.css';
+import { RoleContext } from '../RoleContext';
 
 const BookList = () => {
+  const { role } = useContext(RoleContext);
+
   const [books, setBooks] = useState([
-    { id: 1, title: '1984' },
-    { id: 2, title: 'To Kill a Mockingbird' },
+    { id: 1, title: '1984', author: 'George Orwell' },
+    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
   ]);
+
   const [newTitle, setNewTitle] = useState('');
+  const [newAuthor, setNewAuthor] = useState('');
   const [editId, setEditId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
+  const [editAuthor, setEditAuthor] = useState('');
 
-  const addBook = () => {
-    if (newTitle.trim() === '') return;
-    setBooks([...books, { id: Date.now(), title: newTitle }]);
+  const handleAddBook = () => {
+    if (newTitle.trim() === '') {
+      alert('Please enter a book title.');
+      return;
+    }
+    if (newAuthor.trim() === '') {
+      alert('Please enter the author name.');
+      return;
+    }
+    
+    setBooks([...books, { id: Date.now(), title: newTitle, author: newAuthor }]);
     setNewTitle('');
+    setNewAuthor('');
   };
 
-  const deleteBook = (id) => {
+  const handleDeleteBook = (id) => {
     setBooks(books.filter((book) => book.id !== id));
   };
 
-  const startEditing = (id, currentTitle) => {
+  const handleStartEdit = (id, title, author) => {
     setEditId(id);
-    setEditTitle(currentTitle);
+    setEditTitle(title);
+    setEditAuthor(author);
   };
 
-  const saveEdit = () => {
+  const handleSaveEdit = () => {
     setBooks(books.map((book) =>
-      book.id === editId ? { ...book, title: editTitle } : book
+      book.id === editId ? { ...book, title: editTitle, author: editAuthor } : book
     ));
     setEditId(null);
     setEditTitle('');
+    setEditAuthor('');
   };
 
   return (
     <div className="book-container">
-      <h2>Book List</h2>
-      <ul>
+      <h2>Book List ({role})</h2>
+
+      <ul className="book-list">
         {books.map((book) => (
-          <li key={book.id}>
+          <li key={book.id} className="book-item">
             {editId === book.id ? (
-              <>
-                <input
-                  type="text"
-                  value={editTitle}
-                  onChange={(e) => setEditTitle(e.target.value)}
-                />
-                <button onClick={saveEdit}>Save</button>
-                <button onClick={() => setEditId(null)}>Cancel</button>
-              </>
-            ) : (
-              <>
-                {book.title}
-                <div className="btn-group">
-                  <button onClick={() => startEditing(book.id, book.title)}>Edit</button>
-                  <button onClick={() => deleteBook(book.id)}>Delete</button>
+              <div className="edit-section book-row">
+                <div>
+                  <input
+                    type="text"
+                    value={editTitle}
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    placeholder="Edit title"
+                  />
+                  <input
+                    type="text"
+                    value={editAuthor}
+                    onChange={(e) => setEditAuthor(e.target.value)}
+                    placeholder="Edit author"
+                  />
                 </div>
-              </>
+                {role === 'admin' && (
+                  <div className="btn-group">
+                    <button onClick={handleSaveEdit}>Save</button>
+                    <button onClick={() => setEditId(null)}>Cancel</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="view-section book-row">
+                <span><strong>{book.title}</strong> by {book.author}</span>
+                {role === 'admin' && (
+                  <div className="btn-group">
+                    <button onClick={() => handleStartEdit(book.id, book.title, book.author)}>Edit</button>
+                    <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
+                  </div>
+                )}
+              </div>
             )}
           </li>
         ))}
       </ul>
 
-      <input
-        type="text"
-        value={newTitle}
-        onChange={(e) => setNewTitle(e.target.value)}
-        placeholder="New book title"
-      />
-      <button onClick={addBook}>Add Book</button>
+      {role === 'admin' && (
+        <div className="add-section">
+          <input
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            placeholder="New book title"
+          />
+          <input
+            type="text"
+            value={newAuthor}
+            onChange={(e) => setNewAuthor(e.target.value)}
+            placeholder="Author"
+          />
+          <button onClick={handleAddBook}>Add Book</button>
+        </div>
+      )}
     </div>
   );
 };

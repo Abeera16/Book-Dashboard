@@ -193,4 +193,69 @@ h1 {
     width: 90%;
     max-width: 100%;
   }
+
+  .role-switch-btn {
+    margin: 10px 0;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .role-switch-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .book-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .book-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .book-item {
+    background: #f0f8ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  .book-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .book-row .btn-group {
+    margin-left: auto; /* Pushes buttons to the right */
+    display: flex;
+    gap: 10px;
+  }
+  
+  .book-row > span {
+    flex: 1; /* Makes title/author take full available space */
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 5px;
+  }  
+  
+  .btn-group {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .add-section input {
+    margin-right: 10px;
+    margin-top: 10px;
+  }  
+
 }
