@@ -1,0 +1,196 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1, h2 {
+  font-weight: 600;
+  color: #2e3b4e;
+}
+
+/* App Container */
+.app-container {
+  text-align: center;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+/* Dashboard Layout */
+.dashboard-sections {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Profile Editor Styles */
+.profile-container {
+  background: #ffffff;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.profile-container h2 {
+  color: #1976d2;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.profile-container p {
+  font-size: 1rem;
+  margin: 8px 0;
+  color: #555;
+}
+
+.profile-container input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.profile-container input:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+.profile-container .btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.profile-container button {
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.profile-container button:hover {
+  background-color: #135ba1;
+  transform: translateY(-2px);
+}
+
+.profile-container button:active {
+  transform: translateY(1px);
+}
+
+/* Book List Styles */
+.book-container {
+  background: #ffffff;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.book-container h2 {
+  margin-bottom: 25px;
+  color: #1976d2;
+  font-size: 1.8rem;
+}
+
+.book-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.book-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eef6fc;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.book-container li:hover {
+  background-color: #d3eafd;
+}
+
+.book-container input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.book-container input[type="text"]:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+.book-container button {
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-left: 8px;
+}
+
+.book-container button:hover {
+  background-color: #135ba1;
+  transform: translateY(-2px);
+}
+
+.book-container button:active {
+  transform: translateY(1px);
+}
+
+/* Button Group (For editing profile) */
+.btn-group {
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .dashboard-sections {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-container, .book-container {
+    width: 90%;
+    max-width: 100%;
+  }
+}
